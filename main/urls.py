@@ -21,5 +21,11 @@ from main import views
 urlpatterns = [
     path('',views.index, name='index'),
     path('home',views.home, name='home'),
-    path('profile',views.profile, name='profile')
+    path('profile',views.profile, name='profile'),
+    path('add_student',views.add_student, name='add_student'),
+    path('students_list',views.students_list, name='students_list'),
+    path('edit_student/',views.edit_student, name='edit_student'),
+    path('delete_student/',views.delete_student, name='delete_student'),
+    path('update_profile',views.update_profile, name='update_profile')
+
 ]

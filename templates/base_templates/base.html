@@ -26,13 +26,13 @@
 	<div class="wrapper">
 
 		{% block  'left_sidebar' %}
-		{% include 'left_sidebar.html' %}
+		{% include 'base_templates/left_sidebar.html' %}
 		{% endblock %}
 
 		<div class="main">
 
 			{% block 'navbar' %}
-			{% include 'navbar.html' %}
+			{% include 'base_templates/navbar.html' %}
 			{% endblock %}
 
 			{% block content %}
@@ -40,7 +40,7 @@
 
 
 			{% block 'footer' %}
-			{% include 'footer.html' %}
+			{% include 'base_templates/footer.html' %}
 			{% endblock %}
 		</div>
 	</div>

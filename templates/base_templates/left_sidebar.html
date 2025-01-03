@@ -16,7 +16,11 @@
         <div class="sidebar-user">
             <div class="d-flex justify-content-center">
                 <div class="flex-shrink-0">
-                    <img src="{% static 'img/dashboard/avatars/avatar.jpg' %}" class="avatar img-fluid rounded me-1" alt="Jassa">
+                    {% if usuario.profile_image %}
+                        <img src="{{ usuario.profile_image.url }}" class="avatar img-fluid rounded me-1"" >
+                    {% else %}
+                        <img rc="{% static 'img/dashboard/avatars/avatar.jpg' %}" class="avatar img-fluid rounded me-1">
+                    {% endif %}
                 </div>
                 <div class="flex-grow-1 ps-2">
                     <a class="sidebar-user-title dropdown-toggle" href="#" data-bs-toggle="dropdown">
@@ -60,11 +64,11 @@
 
             <li class="sidebar-item active">
                 <a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                    <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Pages</span>
+                    <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Estudiantes</span>
                 </a>
                 <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <li class="sidebar-item"><a class="sidebar-link" href="pages-settings.html">Settings</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="pages-projects.html">Projects <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{% url 'add_student' %}">Agregar Estudiante</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{% url 'students_list' %}">Listar Estudiantes <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="pages-clients.html">Clients <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="pages-pricing.html">Pricing <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="pages-chat.html">Chat <span class="sidebar-badge badge bg-primary">Pro</span></a></li>

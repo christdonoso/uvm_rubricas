@@ -179,7 +179,11 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-icon pe-md-0 dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                    <img src="{% static 'img/dashboard/avatars/avatar.jpg' %}" class="avatar img-fluid rounded" alt="Jassa">
+                    {% if usuario.profile_image %}
+                        <img src="{{ usuario.profile_image.url }}" class="avatar img-fluid rounded" >
+                    {% else %}
+                        <img src="{% static 'img/dashboard/avatars/avatar.jpg' %}" class="avatar img-fluid rounded" alt="Jassa">
+                    {% endif %}
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>

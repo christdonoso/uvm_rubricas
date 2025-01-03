@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_templates/base.html' %}
 
 {% block content %}
     <main class="content">
@@ -13,6 +13,39 @@
                             <h5 class="card-title mb-0">Empty card</h5>
                         </div>
                         <div class="card-body">
+                            <li class="">
+                                <a data-bs-target="#multi" data-bs-toggle="collapse" class="">
+                                    <i class="align-middle" data-feather="corner-right-down"></i> <span class="align-middle">Multi Level</span>
+                                </a>
+                                <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                                    <li class="sidebar-item">
+                                        <a data-bs-target="#multi-2" data-bs-toggle="collapse" class="sidebar-link collapsed">Two Levels</a>
+                                        <ul id="multi-2" class="sidebar-dropdown list-unstyled collapse">
+                                            <li class="sidebar-item">
+                                                <a class="sidebar-link" href="#">Item 1</a>
+                                                <a class="sidebar-link" href="#">Item 2</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a data-bs-target="#multi-3" data-bs-toggle="collapse" class="sidebar-link collapsed">Three Levels</a>
+                                        <ul id="multi-3" class="sidebar-dropdown list-unstyled collapse">
+                                            <li class="sidebar-item">
+                                                <a data-bs-target="#multi-3-1" data-bs-toggle="collapse" class="sidebar-link collapsed">Item 1</a>
+                                                <ul id="multi-3-1" class="sidebar-dropdown list-unstyled collapse">
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link" href="#">Item 1</a>
+                                                        <a class="sidebar-link" href="#">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a class="sidebar-link" href="#">Item 2</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
                         </div>
                     </div>
                 </div>

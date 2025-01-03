@@ -1,0 +1,130 @@
+{% extends 'base_templates/base.html' %}
+{% load static %}
+{% block content %}
+    <main class="content">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            {% if messages %}
+                            {% for message in messages %}
+                                {% if message.tags == 'success'%}
+                                    <div class="mt-2 alert alert-success alert-dismissible fade show" role="alert">
+                                        <div class="alert-message">
+                                            <strong>{{ message }} </strong> 
+                                        </div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    {% else %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <strong>{{ message }} </strong> 
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                            <h5 class="card-title pt-3">Listado de estudiantes en sistema</h5>
+                        </div>
+                        <div class="card-body">
+                            <table id="datatables-reponsive" class="table table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Ver</th>
+                                        <th>Run</th>
+                                        <th>Nombres</th>
+                                        <th>Apelidos</th>
+                                        <th>Email</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for estudiante in estudiantes %}
+                                        <tr>
+                                            <td class="text-center">
+                                                <a href="" class="text-info" data-bs-toggle="modal" data-bs-target="#tableModal{{ estudiante.id }}">
+                                                    <i class="align-middle me-2" data-feather="eye"></i> 
+                                                </a>
+                                            </td>
+                                            <td>{{ estudiante.run }}</td>
+                                            <td>{{ estudiante.names | title }}</td>
+                                            <td>{{ estudiante.surenames | title }}</td>
+                                            <td>{{ estudiante.email }}</td>
+                                            <td class="text-center">
+                                                <a href="" class="text-danger" data-bs-toggle="modal" data-bs-target="#sizedModalSm{{ estudiante.id }}">
+                                                    <i class="align-middle me-2" data-feather="trash"></i> 
+                                                </a>
+                                                <a href="edit_student/?id={{ estudiante.id }}" class="text-primary">
+                                                    <i class="align-middle me-2" data-feather="edit-2"></i> 
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <!-- BEGIN  modal rubricas -->
+                                        <div class="modal fade" id="tableModal{{ estudiante.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Eliminar Estudiante</h5>
+                                                    </div>
+                                                    <div class="modal-body m-3">
+                                                        <p class="mb-0">Estas seguro que deseas eliminar a  {{ estudiante.names }} {{ estudiante.surenames }} {{ estudiante.run }}.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                        <form method="POST" action="{% url 'delete_student' %}">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="id" value="{{ estudiante.id }}" >
+                                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END  modal rubricas -->
+
+                                        <!-- BEGIN  modal delete -->
+                                        <div class="modal fade" id="sizedModalSm{{ estudiante.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-sm" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Eliminar Estudiante</h5>
+                                                    </div>
+                                                    <div class="modal-body m-3">
+                                                        <p class="mb-0">Estas seguro que deseas eliminar a  {{ estudiante.names }} {{ estudiante.surenames }} {{ estudiante.run }}.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                        <form method="POST" action="{% url 'delete_student' %}">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="id" value="{{ estudiante.id }}" >
+                                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END  modal delete -->
+
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ver la posibilidad de dejar esto en un cdn o importar los cdn de jquery y datatable -->
+    <script src="{% static 'js/datatables.js' %}"></script>
+    <script>
+		document.addEventListener("DOMContentLoaded", function() {
+			// Datatables Responsive
+			$("#datatables-reponsive").DataTable({
+				responsive: true
+			});
+		});
+	</script>
+{% endblock %}
