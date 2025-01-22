@@ -62,7 +62,13 @@
                 </ul>
             </li>
 
-            <li class="sidebar-item active">
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{% url 'profile' %}">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
                 <a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Estudiantes</span>
                 </a>
@@ -75,12 +81,20 @@
                     <li class="sidebar-item active"><a class="sidebar-link" href="pages-blank.html">Blank Page</a></li>
                 </ul>
             </li>
-
             <li class="sidebar-item">
-                <a class="sidebar-link" href="{% url 'profile' %}">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+                <a data-bs-target="#rubricas" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Rubricas</span>
                 </a>
+                <ul id="rubricas" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item"><a class="sidebar-link" href="{% url 'add_student' %}">Agregar Estudiante</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{% url 'students_list' %}">Listar Estudiantes <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="pages-clients.html">Clients <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="pages-pricing.html">Pricing <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="pages-chat.html">Chat <span class="sidebar-badge badge bg-primary">Pro</span></a></li>
+                    <li class="sidebar-item active"><a class="sidebar-link" href="pages-blank.html">Blank Page</a></li>
+                </ul>
             </li>
+
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="pages-invoice.html">
