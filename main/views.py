@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.views.decorators.http import require_POST
 
 from .models import Usuario, Estudiante
+from rubricas.models import Internado, CasoCLinicoConocido, CasoClinicoDesconocido
 
 from utilities import tools
 # Create your views here.
@@ -61,7 +62,15 @@ def add_student(request):
         return render(request, 'add_student.html',{'usuario':usuario})
     else:
         cleaned_data = tools.remove_csrftoken(request.POST)
-        Estudiante.objects.create(**cleaned_data)
+        estudiante = Estudiante.objects.create(**cleaned_data)
+        internados = [Internado(estudiante=estudiante, orden_rotativa=i) for i in range(1,5)]
+        # Inserta todos los objetos en una sola operación
+        internados =Internado.objects.bulk_create(internados)
+
+        for internado in internados:
+            CasoCLinicoConocido.objects.create(internado=internado)
+            CasoClinicoDesconocido.objects.create(internado=internado)
+
         messages.add_message(request, messages.SUCCESS, 'Estudiante creado con exito')
         return render(request, 'add_student.html',{'usuario':usuario})
         
@@ -74,13 +83,17 @@ def students_list(request):
 
 def edit_student(request):
     estudiante = Estudiante.objects.get(id = request.GET['id'])
+    internados = Internado.objects.filter(estudiante=estudiante)
+    for internado in internados:
+        print(internado)
+    print(internados)
     if request.method == 'GET':
-        return render(request, 'edit_student.html',{'estudiante':estudiante})
+        return render(request, 'edit_student.html',{'estudiante':estudiante, 'internados':internados})
     else:
         cleaned_data = tools.remove_csrftoken(request.POST)
         tools.update_model_object(estudiante,cleaned_data)
         messages.add_message(request, messages.SUCCESS, 'Estudiante editado con exito')
-        return render(request, 'edit_student.html',{'estudiante':estudiante})
+        return render(request, 'edit_student.html',{'estudiante':estudiante, 'internados':internados})
 
 
 @require_POST

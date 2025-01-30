@@ -1,0 +1,303 @@
+{% extends 'base_templates/base.html' %}
+{% load static %}
+{% block content %}
+<main class="content">
+    <div class="container-fluid p-0"> 
+        <div class="container mt-4">
+            <form id="evaluationForm" action="" method="POST">
+                {% csrf_token %}
+                <table class="table table-bordered text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>CRITERIOS DE EVALUACIÓN</th>
+                            <th>EXCELENTE (100%)</th>
+                            <th>BUENO (75%)</th>
+                            <th>REGULAR (50%)</th>
+                            <th>DEFICIENTE (25%)</th>
+                            <th>PUNTAJE OBTENIDO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-secondary">
+                            <td colspan="6"><strong>ASPECTOS FORMALES (10%)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>PRESENTACIÓN DEL TEMA</td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="presentacion_tema">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>USO DEL TIEMPO</td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="uso_tiempo">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td colspan="6"><strong>EVALUACIÓN KINÉSICA (35%)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>ASPECTOS SEMIOLÓGICOS</td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="aspectos_semiologicos">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ANAMNESIS</td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="anamnesis">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>EVALUACION KINESICA</td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="evaluacion_kinesica">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>DIAGOSTICO KINESICA</td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="diagnostico_kinesico">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CONDICION DE SALUD Y CONTEXTO DEL USUARIO</td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="condicion_salud_contexto">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td colspan="6"><strong>RAZONAMIENTO CLÍNICO (35%)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>PROBLEMÁTICA DEL USUARIO</td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="problematica_usuario">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>RELACION ENTRE EVALUACION Y RAZONAMIENTO </td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="relacion_evaluacion_razonamiento">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>OBJETIVO GENERAL </td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="objetivo_general">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>OBJETIVO ESPECIFICOS </td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="objetivos_especificos">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>OBJETIVO OERACIONALES </td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="objetivos_operacionales">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PROPUESTA DE TRATAMIENTO RESPETANDO CONTEXTO SOCIOCULTURAL</td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="propuesta_tratamiento_contexto">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td colspan="6"><strong>ASPECTOS COMUNITARIO (10%)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>EDUCACIÓN COMUNIDAD</td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="educacion_comunidad">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>TRABAJO EN EQUIPO - DERIVACIÓN</td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="trabajo_equipo_derivacion">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PRONOSTICO FUNCIONAL</td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="pronostico_funcional">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td colspan="6"><strong>JUSTIFICACION (10%)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>DEFENSA CASO CLINICO</td>
+                            <td><button class="btn btn-success" type="button">EXCELENTE</button></td>
+                            <td><button class="btn btn-warning" type="button">BUENO</button></td>
+                            <td><button class="btn btn-warning" type="button">REGULAR</button></td>
+                            <td><button class="btn btn-danger" type="button">DEFICIENTE</button></td>
+                            <td>
+                                <select class="form-select" name="defensa_caso_clinico">
+                                    <option value="4">EXCELENTE</option>
+                                    <option value="3">BUENO</option>
+                                    <option value="2">REGULAR</option>
+                                    <option value="1">DEFICIENTE</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-center mt-3">La escala de calificación presenta una exigencia del 70% para obtener la nota 4.0.</p>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Enviar Evaluación</button>
+                </div>
+            </form>
+        </div>
+  
+    </div>
+</main>
+
+{% endblock %}

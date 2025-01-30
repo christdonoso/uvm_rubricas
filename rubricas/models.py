@@ -1,15 +1,13 @@
 from django.db import models
-from main.models import Estudiante
+from main.models import Estudiante, Usuario
 # Create your models here.
 
 
 class Internado(models.Model):
     estudiante = models.ForeignKey(Estudiante,on_delete=models.CASCADE)
     orden_rotativa = models.IntegerField()
-    lugar = models.CharField(max_length=100)
-    profesor_guia  = models.CharField(max_length=50)
-    caso_clinico_conocido = models.OneToOneField('CasoCLinicoConocido', on_delete=models.CASCADE)
-    caso_clinico_desconocido = models.OneToOneField('CasoCLinicoDesconocido', on_delete=models.CASCADE)
+    lugar = models.CharField(max_length=100, default='')
+    profesor_guia  = models.CharField(max_length=50, default='')
     nota = ...
     estado = ...
     
@@ -20,7 +18,11 @@ class CasoCLinicoConocido(models.Model):
         BUENO = 'Bueno', 'Bueno'
         REGULAR = 'Regular', 'Regular'
         DEFICIENTE = 'Deficiente', 'Deficiente'
-
+    
+    # relaciones con otros modelos
+    evalaudor = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING, default='')
+    internado = models.ForeignKey(Internado, on_delete=models.DO_NOTHING, default='')
+    
     # Campos de la matriz
     presentacion_tema = models.CharField(max_length=20, choices=Nivel.choices, default=Nivel.DEFICIENTE)
     uso_del_tiempo = models.CharField(max_length=20, choices=Nivel.choices, default=Nivel.DEFICIENTE)
@@ -52,6 +54,7 @@ class CasoClinicoDesconocido(models.Model):
         DEFICIENTE = 'Deficiente', 'Deficiente'
 
     # Campos de la matriz
+    internado = models.OneToOneField(Internado, on_delete=models.DO_NOTHING, default='')
     presentacion_personal_autocuidado = models.CharField(max_length=20, choices=Nivel.choices, default=Nivel.DEFICIENTE)
     presentacion_tema_capacidad_sintesis = models.CharField(max_length=20, choices=Nivel.choices, default=Nivel.DEFICIENTE)
     uso_del_tiempo = models.CharField(max_length=20, choices=Nivel.choices, default=Nivel.DEFICIENTE)

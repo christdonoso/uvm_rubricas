@@ -15,19 +15,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-
-#import to upload media files
-from django.conf import settings
-from django.conf.urls.static import static
+from django.urls import path
+from rubricas import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',include('main.urls')),
-    path('rubricas/',include('rubricas.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
-] 
-
-## media files managment
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('edit_casoclinicoconocido',views.edit_casoclinicoconocido, name='edit_casoclinicoconocido'),
+]
