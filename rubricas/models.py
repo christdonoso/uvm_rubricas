@@ -20,8 +20,8 @@ class CasoCLinicoConocido(models.Model):
         DEFICIENTE = 'Deficiente', 'Deficiente'
     
     # relaciones con otros modelos
-    evalaudor = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING, default='')
-    internado = models.ForeignKey(Internado, on_delete=models.DO_NOTHING, default='')
+    evaluador = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING, default='')
+    internado = models.ForeignKey(Internado, on_delete=models.SET_NULL, null=True, blank=True)
     
     # Campos de la matriz
     presentacion_tema = models.CharField(max_length=20, choices=Nivel.choices, default=Nivel.DEFICIENTE)
@@ -52,6 +52,10 @@ class CasoClinicoDesconocido(models.Model):
         BUENO = 'Bueno', 'Bueno'
         REGULAR = 'Regular', 'Regular'
         DEFICIENTE = 'Deficiente', 'Deficiente'
+
+    # relaciones con otros modelos
+    evaluador = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING, default='')
+    internado = models.ForeignKey(Internado, on_delete=models.DO_NOTHING, default='')
 
     # Campos de la matriz
     internado = models.OneToOneField(Internado, on_delete=models.DO_NOTHING, default='')
